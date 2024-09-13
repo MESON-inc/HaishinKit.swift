@@ -750,7 +750,7 @@ extension RTMPStream: HKStream {
                                 $0.stream(self, didOutput: sampleBuffer)
                             }
                         case .video:
-                            if videoSampleAccess || ($0 is View) {
+                            if videoSampleAccess || ($0 is View) || ($0 is RTMPTexture) {
                                 $0.stream(self, didOutput: sampleBuffer)
                             }
                         default:

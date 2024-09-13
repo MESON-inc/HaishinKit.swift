@@ -103,6 +103,8 @@
 		2EC97B7227880FF400D8BE32 /* OnTapGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC97B6E27880FF400D8BE32 /* OnTapGestureView.swift */; };
 		2EC97B7327880FF400D8BE32 /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC97B6F27880FF400D8BE32 /* Views.swift */; };
 		2EC97B7427880FF400D8BE32 /* MTHKSwiftUiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC97B7027880FF400D8BE32 /* MTHKSwiftUiView.swift */; };
+		815854462C912E9700549644 /* RTMPWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815854452C912E8A00549644 /* RTMPWrapper.swift */; };
+		81B960E42C8FEF8B001E2DFB /* RTMPTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B960E32C8FEF8B001E2DFB /* RTMPTexture.swift */; };
 		B31723602C0940D800C7AED0 /* VideoRotator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317235F2C0940D800C7AED0 /* VideoRotator.swift */; };
 		B31723622C0948E300C7AED0 /* VTRotationSessionOption+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31723612C0948E300C7AED0 /* VTRotationSessionOption+Extension.swift */; };
 		B34239852B9FD3E30068C3FB /* AudioNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34239842B9FD3E30068C3FB /* AudioNode.swift */; };
@@ -590,6 +592,8 @@
 		2EC97B6E27880FF400D8BE32 /* OnTapGestureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTapGestureView.swift; sourceTree = "<group>"; };
 		2EC97B6F27880FF400D8BE32 /* Views.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
 		2EC97B7027880FF400D8BE32 /* MTHKSwiftUiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTHKSwiftUiView.swift; sourceTree = "<group>"; };
+		815854452C912E8A00549644 /* RTMPWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTMPWrapper.swift; sourceTree = "<group>"; };
+		81B960E32C8FEF8B001E2DFB /* RTMPTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RTMPTexture.swift; path = ../../../../../Desktop/RTMPTexture.swift; sourceTree = "<group>"; };
 		B317235F2C0940D800C7AED0 /* VideoRotator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRotator.swift; sourceTree = "<group>"; };
 		B31723612C0948E300C7AED0 /* VTRotationSessionOption+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VTRotationSessionOption+Extension.swift"; sourceTree = "<group>"; };
 		B34239842B9FD3E30068C3FB /* AudioNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioNode.swift; sourceTree = "<group>"; };
@@ -1140,6 +1144,7 @@
 				29B876AA1CD70B2800FC07DA /* RTMPStream.swift */,
 				BC558267240BB40E00011AC0 /* RTMPStreamInfo.swift */,
 				BCA3A5242BC4ED220083BBB1 /* RTMPTimestamp.swift */,
+				81B960E32C8FEF8B001E2DFB /* RTMPTexture.swift */,
 			);
 			path = RTMP;
 			sourceTree = "<group>";
@@ -1266,6 +1271,7 @@
 		BC7A0E3E2B088FA7005FB2F7 /* visionOS */ = {
 			isa = PBXGroup;
 			children = (
+				815854452C912E8A00549644 /* RTMPWrapper.swift */,
 				BC7A0E452B088FA7005FB2F7 /* ContentView.swift */,
 				BC7A0E432B088FA7005FB2F7 /* Example_visionOSApp.swift */,
 				BC7A0E512B088FA9005FB2F7 /* Info.plist */,
@@ -1626,7 +1632,6 @@
 					};
 					2945CBBC1B4BE66000104112 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = SUEQ2SZ2L5;
 						LastSwiftMigration = 1020;
 					};
 					29798E581CE60E5300F5CBD0 = {
@@ -1990,6 +1995,7 @@
 				29DC17B321D0CC0600E26CED /* HKAtomic.swift in Sources */,
 				BCDEB4F82BE441D300EEC6ED /* ScreenRenderer.swift in Sources */,
 				2942424D1CF4C01300D65DCB /* MD5.swift in Sources */,
+				81B960E42C8FEF8B001E2DFB /* RTMPTexture.swift in Sources */,
 				29EA87D31E799F360043A5F8 /* ExpressibleByIntegerLiteral+Extension.swift in Sources */,
 				29B876901CD70AFE00FC07DA /* AudioCaptureUnit.swift in Sources */,
 				1A216F07B0BD8E05C8ECC8F1 /* AVAudioFormat+DebugExtension.swift in Sources */,
@@ -2099,6 +2105,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				815854462C912E9700549644 /* RTMPWrapper.swift in Sources */,
 				BCCB42782C6A8F47003B1168 /* HKStreamSwitcher.swift in Sources */,
 				BC7A0E5E2B089A08005FB2F7 /* PiPHKSwiftUiView.swift in Sources */,
 				BC7A0E462B088FA7005FB2F7 /* ContentView.swift in Sources */,
@@ -2453,11 +2460,11 @@
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = SUEQ2SZ2L5;
+				DEVELOPMENT_TEAM = 9WD5876MRD;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2481,6 +2488,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.haishinkit.HaishinKit;
 				PRODUCT_NAME = HaishinKit;
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = "";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx xros xrsimulator";
@@ -2500,11 +2508,11 @@
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = SUEQ2SZ2L5;
+				DEVELOPMENT_TEAM = 9WD5876MRD;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2529,6 +2537,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.haishinkit.HaishinKit;
 				PRODUCT_NAME = HaishinKit;
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = "";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx xros xrsimulator";
@@ -2830,7 +2839,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = SUEQ2SZ2L5;
+				DEVELOPMENT_TEAM = 9WD5876MRD;
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2873,7 +2882,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SUEQ2SZ2L5;
+				DEVELOPMENT_TEAM = 9WD5876MRD;
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
