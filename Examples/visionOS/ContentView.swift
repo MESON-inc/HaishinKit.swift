@@ -1,6 +1,8 @@
 import SwiftUI
 import RealityKit
 import HaishinKit
+import Combine
+import MetalKit
 
 struct ContentView: View {
     @ObservedObject var viewModel = ViewModel()
@@ -8,6 +10,7 @@ struct ContentView: View {
     @State var model: ModelEntity?
     @State var image: UIImage?
     private var lfView: PiPHKSwiftUiView!
+    @State var cancellables: [AnyCancellable] = []
     
     init() {
         viewModel.config()
@@ -15,6 +18,7 @@ struct ContentView: View {
     }
 
     var body: some View {
+                
 //        VStack {
 //            lfView
 //                .ignoresSafeArea()
@@ -25,6 +29,7 @@ struct ContentView: View {
 //        }
 
         RealityView { content in
+                        
             self.model = ModelEntity(mesh: .generateBox(size: 0.5), materials: [UnlitMaterial(color: .white)])
             content.add(self.model!)
         }
@@ -40,10 +45,32 @@ struct ContentView: View {
         .onAppear() {
             Task { @MainActor in
                 self.texture = .init(onUpdateTextureResource:onUpdateTextureResource)
-                //self.texture = .init(onUpdateImage: onUpdateImage)
+//                self.texture = .init(onUpdateImage: onUpdateImage)
                 await self.viewModel.stream.addOutput(texture!)
                 self.viewModel.startPlaying()
             }
+            
+            
+            Timer.publish(every: 0.016, on: .main, in: .common).autoconnect().sink { output in
+                
+                Task { @MainActor in
+                    guard let texture = self.texture else { return }
+                    
+                    let textureLoader = MTKTextureLoader(device: texture.device!)
+                    let url = Bundle.main.url(forResource: "sample03", withExtension: "png")!
+                    let mtlTexture: MTLTexture = try! textureLoader.newTexture(URL: url, options: [.generateMipmaps:false, .allocateMipmaps:false] )
+
+                    guard let mtlTexture = texture.currentTexture else { return }
+
+                    texture.makeTextureResource(mtlTexture: mtlTexture)
+                    
+                    guard let textureResource = texture.textureResource else { return }
+                    
+                    onUpdateTextureResource(texture: textureResource)
+
+                }
+                
+            }.store(in: &cancellables)
         }
     }
     

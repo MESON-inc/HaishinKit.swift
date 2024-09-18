@@ -103,8 +103,9 @@
 		2EC97B7227880FF400D8BE32 /* OnTapGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC97B6E27880FF400D8BE32 /* OnTapGestureView.swift */; };
 		2EC97B7327880FF400D8BE32 /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC97B6F27880FF400D8BE32 /* Views.swift */; };
 		2EC97B7427880FF400D8BE32 /* MTHKSwiftUiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC97B7027880FF400D8BE32 /* MTHKSwiftUiView.swift */; };
+		8122056F2C9A651100C184A7 /* sample03.png in Resources */ = {isa = PBXBuildFile; fileRef = 8122056E2C9A651100C184A7 /* sample03.png */; };
 		815854462C912E9700549644 /* RTMPWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815854452C912E8A00549644 /* RTMPWrapper.swift */; };
-		81B960E42C8FEF8B001E2DFB /* RTMPTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B960E32C8FEF8B001E2DFB /* RTMPTexture.swift */; };
+		81C1F5BC2C9A752D00E5A65B /* RTMPTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C1F5BB2C9A752D00E5A65B /* RTMPTexture.swift */; };
 		B31723602C0940D800C7AED0 /* VideoRotator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317235F2C0940D800C7AED0 /* VideoRotator.swift */; };
 		B31723622C0948E300C7AED0 /* VTRotationSessionOption+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31723612C0948E300C7AED0 /* VTRotationSessionOption+Extension.swift */; };
 		B34239852B9FD3E30068C3FB /* AudioNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34239842B9FD3E30068C3FB /* AudioNode.swift */; };
@@ -592,8 +593,9 @@
 		2EC97B6E27880FF400D8BE32 /* OnTapGestureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTapGestureView.swift; sourceTree = "<group>"; };
 		2EC97B6F27880FF400D8BE32 /* Views.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
 		2EC97B7027880FF400D8BE32 /* MTHKSwiftUiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTHKSwiftUiView.swift; sourceTree = "<group>"; };
+		8122056E2C9A651100C184A7 /* sample03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample03.png; sourceTree = "<group>"; };
 		815854452C912E8A00549644 /* RTMPWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTMPWrapper.swift; sourceTree = "<group>"; };
-		81B960E32C8FEF8B001E2DFB /* RTMPTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RTMPTexture.swift; path = ../../../../../Desktop/RTMPTexture.swift; sourceTree = "<group>"; };
+		81C1F5BB2C9A752D00E5A65B /* RTMPTexture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTMPTexture.swift; sourceTree = "<group>"; };
 		B317235F2C0940D800C7AED0 /* VideoRotator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRotator.swift; sourceTree = "<group>"; };
 		B31723612C0948E300C7AED0 /* VTRotationSessionOption+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VTRotationSessionOption+Extension.swift"; sourceTree = "<group>"; };
 		B34239842B9FD3E30068C3FB /* AudioNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioNode.swift; sourceTree = "<group>"; };
@@ -1144,7 +1146,7 @@
 				29B876AA1CD70B2800FC07DA /* RTMPStream.swift */,
 				BC558267240BB40E00011AC0 /* RTMPStreamInfo.swift */,
 				BCA3A5242BC4ED220083BBB1 /* RTMPTimestamp.swift */,
-				81B960E32C8FEF8B001E2DFB /* RTMPTexture.swift */,
+				81C1F5BB2C9A752D00E5A65B /* RTMPTexture.swift */,
 			);
 			path = RTMP;
 			sourceTree = "<group>";
@@ -1277,6 +1279,7 @@
 				BC7A0E512B088FA9005FB2F7 /* Info.plist */,
 				BC7A0E5D2B089A08005FB2F7 /* PiPHKSwiftUiView.swift */,
 				BC603E482B08933F00C8386E /* ViewModel.swift */,
+				8122056E2C9A651100C184A7 /* sample03.png */,
 			);
 			path = visionOS;
 			sourceTree = "<group>";
@@ -1759,6 +1762,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8122056F2C9A651100C184A7 /* sample03.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1995,7 +1999,7 @@
 				29DC17B321D0CC0600E26CED /* HKAtomic.swift in Sources */,
 				BCDEB4F82BE441D300EEC6ED /* ScreenRenderer.swift in Sources */,
 				2942424D1CF4C01300D65DCB /* MD5.swift in Sources */,
-				81B960E42C8FEF8B001E2DFB /* RTMPTexture.swift in Sources */,
+				81C1F5BC2C9A752D00E5A65B /* RTMPTexture.swift in Sources */,
 				29EA87D31E799F360043A5F8 /* ExpressibleByIntegerLiteral+Extension.swift in Sources */,
 				29B876901CD70AFE00FC07DA /* AudioCaptureUnit.swift in Sources */,
 				1A216F07B0BD8E05C8ECC8F1 /* AVAudioFormat+DebugExtension.swift in Sources */,
