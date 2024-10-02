@@ -11,7 +11,6 @@ import CoreGraphics
 import Accelerate
 
 public final class RTMPTexture: HKStreamOutput {
-    private var cvMetalTexture: CVMetalTexture?
     private var textureCache: CVMetalTextureCache?
     public let device: (any MTLDevice)?
     private var commandQueue: (any MTLCommandQueue)?
@@ -56,6 +55,8 @@ public final class RTMPTexture: HKStreamOutput {
         guard let textureCache = textureCache else { return }
         let width = CVPixelBufferGetWidth(pixelBuffer)
         let height = CVPixelBufferGetHeight(pixelBuffer)
+        
+        var cvMetalTexture: CVMetalTexture? = nil
         CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache, pixelBuffer, nil, .rgba8Unorm, width, height, 0, &cvMetalTexture)
         
         guard let cvMetalTexture = cvMetalTexture, let metalTexture = CVMetalTextureGetTexture(cvMetalTexture) else {
@@ -224,22 +225,31 @@ public final class RTMPTexture: HKStreamOutput {
 
 extension CVPixelBuffer {
     public func toBGRA() throws -> CVPixelBuffer? {
-        let pixelBuffer = self
+        
+        var pixelBuffer = self
 
         /// Check format
-//        let pixelFormat = CVPixelBufferGetPixelFormatType(pixelBuffer)
-//        guard pixelFormat == kCVPixelFormatType_420YpCbCr8BiPlanarFullRange else { return pixelBuffer }
+        let pixelFormat = CVPixelBufferGetPixelFormatType(pixelBuffer)
+        //print("pixel format : ", pixelFormat)
+        //debugPixelFormatType(pixelFormat: pixelFormat)
+        
+        if pixelFormat == kCVPixelFormatType_Lossless_420YpCbCr8BiPlanarVideoRange {
+            if let decodedPixelBuffer = decodeLosslessYUVToPixelBuffer(pixelBuffer) {
+                pixelBuffer = decodedPixelBuffer
+            }
+        }
 
         /// Split plane
         let yImage: VImage = pixelBuffer.with({ VImage(pixelBuffer: $0, plane: 0) })!
         let cbcrImage: VImage = pixelBuffer.with({ VImage(pixelBuffer: $0, plane: 1) })!
 
         /// Create output pixelBuffer
-        let outPixelBuffer = CVPixelBuffer.make(width: yImage.width, height: yImage.height, format: kCVPixelFormatType_32BGRA)!
-
+        guard let outPixelBuffer = CVPixelBuffer.make(width: yImage.width, height: yImage.height, format: kCVPixelFormatType_32BGRA) else { return nil }
+        
         /// Convert yuv to argb
         var argbImage = outPixelBuffer.with({ VImage(pixelBuffer: $0) })!
         try argbImage.draw(yBuffer: yImage.buffer, cbcrBuffer: cbcrImage.buffer)
+        
         /// Convert argb to bgra
         argbImage.permute(channelMap: [3, 2, 1, 0])
 
@@ -331,6 +341,30 @@ extension vImage_Buffer {
     mutating func permute(channelMap: [UInt8]) {
         vImagePermuteChannels_ARGB8888(&self, &self, channelMap, 0)
     }
+}
+
+
+func decodeLosslessYUVToPixelBuffer(_ pixelBuffer: CVPixelBuffer) -> CVPixelBuffer? {
+    let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+    let context = CIContext()
+
+    // 未圧縮のピクセルバッファを作成
+    var outputPixelBuffer: CVPixelBuffer?
+    let attributes: CFDictionary = [
+        kCVPixelBufferPixelFormatTypeKey: Int(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange),
+        kCVPixelBufferWidthKey: CVPixelBufferGetWidth(pixelBuffer),
+        kCVPixelBufferHeightKey: CVPixelBufferGetHeight(pixelBuffer)
+    ] as CFDictionary
+    
+    CVPixelBufferCreate(kCFAllocatorDefault, CVPixelBufferGetWidth(pixelBuffer), CVPixelBufferGetHeight(pixelBuffer), kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange, attributes, &outputPixelBuffer)
+    
+    // CIContextで圧縮解除し、未圧縮のピクセルバッファに書き込み
+    guard let outputBuffer = outputPixelBuffer else {
+        return nil
+    }
+    context.render(ciImage, to: outputBuffer)
+    
+    return outputBuffer
 }
 
 
